@@ -4,9 +4,9 @@ QuantPy
 A framework for quantitative finance in python.
 
 **Disclaimer:** This is a *very* alpha project.  It is not ready to be used and
-won't be for a while.  In fact, the author is still ver much learning what such
-a framework needs to entail.  However, if you consider yourself a helpful soul
-contributions of any type are more then welcome.
+won't be for a while.  In fact, the author is still very much learning what
+such a framework needs to entail.  However, if you consider yourself a helpful
+soul contributions of any type are more then welcome.
 
 Contributions Welcome.
 ----------------------
@@ -14,7 +14,7 @@ Contributions Welcome.
 Any and all contributions for the project are welcome whether they be feature
 requests, bug reports, contributions to documentation, or patches for new
 features, bug fixes of other improvements.  Just downloading the code and
-providing feedback is extremely useful.  Thanks in advance.
+providing feedback is also extremely useful.  Thanks in advance.
 
 
 How To Install.
@@ -44,13 +44,13 @@ commercial) software for which the source code is kept secret."
 Why Git and GitHub?
 -------------------
 
-There are a few revision control systems. Git was chosen for the simple reason
-that git was designed with the ability to create many anonymous untracked
-branches where code can be pushed and pulled from without revealing the
-anonymous history.  We feel this design choice is important for entities with
-proprietary code who what to make contributions but keep their branches
-anonymous.  Github was chosen because it seems to give the most user friendly
-git experience across all platforms: Windows, Mac and Linux. 
+There are a few great distributed revision control systems. Git was chosen for
+the simple reason that git was designed with the ability to create many
+anonymous untracked branches where code can be pushed and pulled from without
+revealing the anonymous history.  We feel this design choice is important for
+entities with proprietary code who want to make contributions but keep their
+branches anonymous.  Github was chosen because it seems to give the most user
+friendly git experience across all platforms: Windows, Mac and Linux. 
 
 
 Is Non-Commercial/Proprietary Use allowed?
