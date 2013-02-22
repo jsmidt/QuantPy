@@ -1,6 +1,7 @@
 from pandas.io.data import DataReader
 from pylab import legend, xlabel, ylabel, sqrt,ylim
 
+# Stock class.
 class Stock:
     def __init__(self, symbol, start = None, end = None):
         self.symbol = symbol
