@@ -6,7 +6,7 @@ A framework for quantitative finance in python.
 **Disclaimer:** This is a *very* alpha project.  It is not ready to be used and
 won't be for a while.  In fact, the author is still very much learning what
 such a framework needs to entail.  However, if you consider yourself a helpful
-soul contributions of any type are more then welcome. Thanks.
+soul contributions of any type are more then welcome. Thanks!
 
 Contributions Welcome.
 ----------------------
