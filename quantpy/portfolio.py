@@ -1,6 +1,6 @@
 from pandas.io.data import DataReader
-from pylab import legend, xlabel, ylabel, sqrt,ylim, cov, sqrt, mean, std, plot, show
-from numpy import array, zeros, matrix, ones, shape, vectorize, linspace
+from pylab import legend, xlabel, ylabel, sqrt,ylim, cov, sqrt, mean, std, plot, show, figure
+from numpy import array, zeros, matrix, ones, shape, linspace, hstack
 from pandas import Series, DataFrame
 from numpy.linalg import inv
 
@@ -73,31 +73,29 @@ class Portfolio:
             tmpl.append(tmp[symbol]) 
         return DataFrame(cov(array(tmpl)),index=tmp.keys(),columns=tmp.keys())
 
-    def sharpe_w(self):
+    def get_w(self,kind='sharpe'):
         V = self.cov()
-        suml = []
-        for symbol in self.asset.keys():
-            suml.append(self.returns()[symbol].sum())
-        f = matrix(suml).T
         iV = matrix(inv(V))
-        num = iV*f
-        denom = f.T*iV*f
-        w = array(num/denom).flatten()
-        return Series(w,index=self.asset.keys())
 
-    def characteristic_w(self):
-        V = self.cov()
-        suml = []
-        e = matrix(ones(len(self.asset.keys()))).T
-        iV = matrix(inv(V))
+        if kind == 'characteristic':
+            e = matrix(ones(len(self.asset.keys()))).T
+        elif kind == 'sharpe':
+            suml = []
+            for symbol in self.asset.keys():
+                suml.append(self.returns()[symbol].sum())
+            e = matrix(suml).T
+        else:
+            print '\n  *Error: There is no weighting for kind ' + kind
+            return
+
         num = iV*e
         denom = e.T*iV*e
         w = array(num/denom).flatten()
         return Series(w,index=self.asset.keys())
-
+            
     def efficient_frontier_w(self,fp):
-        wc = self.characteristic_w()
-        wq = self.sharpe_w()
+        wc = self.get_w(kind='characteristic')
+        wq = self.get_w(kind='sharpe')
 
         fc = self.ret_for_w(wc).sum()
         fq = self.ret_for_w(wq).sum()
@@ -107,7 +105,6 @@ class Portfolio:
         return Series(w/denom,index=self.asset.keys())
 
     def efficient_frontier(self,xi=0.01,xf=4,npts=100,scale=10):
-        vret = vectorize(self.ret_for_w)
         frontier = linspace(xi,xf,npts)
 
         i = 0
@@ -123,13 +120,17 @@ class Portfolio:
             i += 1
         return Series(rets,index=risk), sharpe.max()
 
-    def efficient_frontier_plot(self,xi=0.01,xf=4,npts=100,scale=0.1):
+    def efficient_frontier_plot(self,xi=0.01,xf=4,npts=100,scale=0.1,col1='b',col2='r',newfig=1,plabel=''):
         eff, m = self.efficient_frontier()
-        plot(array(eff.index),array(eff),'b',label="Efficient Frontier")
-        plot(array(eff.index),m*array(eff.index),'r',label="Max Sharpe Ratio: %6.2g" %m)
+
+        if newfig == 1: figure()
+
+        plot(array(eff.index),array(eff),col1,linewidth=2,label="Efficient Frontier "+plabel)
+        tmp = zeros(1)
+        plot(hstack((tmp, array(eff.index))),hstack((0,m*array(eff.index))),col2,linewidth=2,label="Max Sharpe Ratio: %6.2g" %m)
         legend(loc='best',shadow=True, fancybox=True)
-        xlabel('Risk %')
-        ylabel('Return %')
+        xlabel('Risk %',fontsize=16)
+        ylabel('Return %',fontsize=16)
         show()
 
     def min_var_w_ret(self,ret):
