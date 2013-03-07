@@ -1,0 +1,32 @@
+# Changelog format:
+# 
+# ** Release v<version> **
+#
+# Release highlights:
+#     * Highlight 1
+#     * Highlight 2
+#     * Etc...
+# Bugs fixed:
+#     * Fix description 1 (Closes 1234)
+#     * Fix description 2 (Closes 5678)
+#     * Etc...
+# Miscellaneous notes and known issues:
+#     * Etc...
+#
+# git-<hashtag>,  <date>, <committer's name>, <committer's email>
+#
+
+** Release v0.1 **
+
+Release Highlights:
+   * Initial Release 
+   * Portfolio class that can import daily returns from Yahoo.
+   * Calculation of optimal weights for Sharpe ratio and efficient frontier
+   * Bare bones event profiler
+Bugs fixed:
+   * Add distutils install like a normal python module enhancement. (Closes 1)
+Miscellaneous notes and known issues:
+   * Please see the "issues" section on Github and jump right in.
+
+ git-3b36a95, Wed Mar 6 10:42:54, Joseph Smidt <josephsmidt@gmail.com>
+
