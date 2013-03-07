@@ -28,5 +28,5 @@ Bugs fixed:
 Miscellaneous notes and known issues:
    * Please see the "issues" section on Github and jump right in.
 
- git-3b36a95, Wed Mar 6 10:42:54, Joseph Smidt <josephsmidt@gmail.com>
+ git-4da9cbb, Wed Mar 6 10:42:54, Joseph Smidt <josephsmidt@gmail.com>
 
