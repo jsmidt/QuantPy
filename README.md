@@ -8,6 +8,12 @@ won't be for a while.  In fact, the author is still very much learning what
 such a framework needs to entail.  However, if you consider yourself a helpful
 soul contributions of any type are more then welcome. Thanks!
 
+
+Some current capabilities:
+   * Portfolio class that can import daily returns from Yahoo.
+   * Calculation of optimal weights for Sharpe ratio and efficient frontier
+   * Bare bones event profiler
+
 Contributions Welcome.
 ----------------------
 
