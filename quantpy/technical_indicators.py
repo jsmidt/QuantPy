@@ -1,8 +1,8 @@
 
 
-    def sma():
+def sma():
         pass
 
 
-    def ema():
+def ema():
         pass

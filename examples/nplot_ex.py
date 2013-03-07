@@ -1,13 +1,13 @@
 # Example plotting returns.
 from pylab import *
-import portfolio
+import quantpy as qp
 
 # Get symbols.
 syms = ['IBM','GOOG','MSFT','AAPL','INTC']
 cols = ['b','r','g','k','m','y']
 
 # Get portfolio
-P = portfolio.Portfolio(syms)
+P = qp.Portfolio(syms)
 
 # Make plots of normalized returns.
 for sym,col in zip(syms,cols):

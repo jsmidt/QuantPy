@@ -1,5 +1,4 @@
-import portfolio
-from event_profiler import *
+import quantpy as qp
 from numpy import *
 
 
@@ -14,7 +13,7 @@ def truth_function(asset):
 
 
 # Grab a profile
-P = portfolio.Portfolio(['GOOG','IBM','INTC'])
+P = qp.Portfolio(['GOOG','IBM','INTC'])
 
 # Define your asset you want to test.
 asset = P.asset['IBM']['Adj Close']
@@ -23,7 +22,7 @@ asset = P.asset['IBM']['Adj Close']
 truth = truth_function(asset)
 
 # Get profiles for these events
-profiles = event_profiler(asset,truth)
+profiles = qp.event_profiler(asset,truth)
 
 # Plot them
-plot_event_profile(profiles,name='When price increases $1.')
+qp.plot_event_profile(profiles,name='When price increases $1.')

@@ -1,8 +1,8 @@
 from pylab import *
-import portfolio
+import quantpy as qp
 
 # Get portf
-P = portfolio.Portfolio(['IBM','GOOG','MSFT','AAPL','INTC'])
+P = qp.Portfolio(['IBM','GOOG','MSFT','AAPL','INTC'])
 
 
 bb = P.ret_for_w(ones(5))

@@ -1,9 +1,9 @@
 # Example plotting effienct frontier.
 
-import portfolio
+import quantpy as qp
 
 # Grap portfolio
-P = portfolio.Portfolio(['GOOG','IBM','INTC','MSFT','AAPL'])
+P = qp.Portfolio(['GOOG','IBM','INTC','MSFT','AAPL'])
 
 # Plot effiecent frontier
 P.efficient_frontier_plot()
