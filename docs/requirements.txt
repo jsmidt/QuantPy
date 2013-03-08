@@ -1,4 +1,4 @@
 f2py
-numpy>1.4
-matplotlib>1.1.0
-pandas>0.10.0
+numpy
+matplotlib
+pandas
