@@ -14,6 +14,11 @@ Some current capabilities:
    * Calculation of optimal weights for Sharpe ratio and efficient frontier
    * Bare bones event profiler
 
+Documentation:
+--------------
+
+The main documentation can be read at [Read The Docs](https://quantpy.readthedocs.org/en/latest/).  Please start their for more information.
+
 Contributions Welcome.
 ----------------------
 

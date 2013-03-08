@@ -1,4 +1,4 @@
 *pyc
 *swp
-build/
-sphinx/_*
+docs/_build
+
