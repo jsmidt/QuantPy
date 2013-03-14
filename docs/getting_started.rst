@@ -37,7 +37,7 @@ useful. Submit your feedback to the `issues page here
 
 .. _installing-docdir:
 
-Installing QuntPy
+Installing QuantPy
 =============================
 
 QuantPy may be downloaded from GitHub as::
