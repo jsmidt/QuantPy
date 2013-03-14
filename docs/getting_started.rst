@@ -23,15 +23,16 @@ Contributions Welcome.
 
 Any and all contributions for the project are welcome whether they be feature
 requests, bug reports, contributions to documentation, or patches for new
-features, bug fixes of other improvements.  Just [fork the
-repo](https://help.github.com/articles/fork-a-repo), add some content and [make
-a pull request] (https://help.github.com/articles/be-social). If you are new to
- Git [this tutorial](http://learn.github.com/p/intro.html) is nice for futher details.
+features, bug fixes of other improvements.  Just `fork the repo
+<https://help.github.com/articles/fork-a-repo>` _, add some content and `make a
+pull request <https://help.github.com/articles/be-social>` _. If you are new to
+Git `this tutorial <http://learn.github.com/p/intro.html>` _ is nice for
+further details.
 
 
 Also, just downloading the code and providing feedback is also extremely
-useful. Sumbit your feedback to the [issues page
-here](https://github.com/jsmidt/QuantPy/issues?state=open).  Thanks in advance.
+useful. Submit your feedback to the `issues page here
+<https://github.com/jsmidt/QuantPy/issues?state=open>` _.  Thanks in advance.
 
 
 .. _installing-docdir:
