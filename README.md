@@ -24,14 +24,32 @@ Contributions Welcome.
 
 Any and all contributions for the project are welcome whether they be feature
 requests, bug reports, contributions to documentation, or patches for new
-features, bug fixes of other improvements.  Just downloading the code and
-providing feedback is also extremely useful.  Thanks in advance.
+features, bug fixes of other improvements.  Just [fork the
+repo](https://help.github.com/articles/fork-a-repo), add some content and [make
+a pull request] (https://help.github.com/articles/be-social). 
+
+Also, just downloading the code and providing feedback is also extremely
+useful. Sumbit your feedback to the [issues page
+here](https://github.com/jsmidt/QuantPy/issues?state=open).  Thanks in advance.
 
 
 How To Install.
 ---------------
 
-To be written later.
+QuantPy may be downloaded from GitHub as::
+
+  > git clone https://github.com/jsmidt/QuantPy.git
+
+To install QuantPy type::
+
+  > cd QuantPy
+  > python setup.py install 
+
+The prerequisites for Quantpy are:
+
+* pandas (> 0.10.0)
+* matplotlib (> 0.1.0)
+
 
 Why Python?
 -----------
