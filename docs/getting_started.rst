@@ -25,7 +25,9 @@ Any and all contributions for the project are welcome whether they be feature
 requests, bug reports, contributions to documentation, or patches for new
 features, bug fixes of other improvements.  Just [fork the
 repo](https://help.github.com/articles/fork-a-repo), add some content and [make
-a pull request] (https://help.github.com/articles/be-social).
+a pull request] (https://help.github.com/articles/be-social). If you are new to
+ Git [this tutorial](http://learn.github.com/p/intro.html) is nice for futher details.
+
 
 Also, just downloading the code and providing feedback is also extremely
 useful. Sumbit your feedback to the [issues page
