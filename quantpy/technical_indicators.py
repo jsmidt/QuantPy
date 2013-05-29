@@ -91,3 +91,45 @@ def emstd(data, window):
 
     return pd.ewmstd(data, window)
 
+def macd(data, ema_fast = 12, ema_slow = 26, ema_macd = 9):
+    """Moving Average Convergence/Divergence.
+
+    Paramters:
+
+        'data' is a pandas Series or DataFrame of prices. A ValueError is raised
+        if 'data' is of different data type.
+
+        'ema_fast' The window period of the "fast" EMA. (Default = 12)
+
+        'ema_slow' The window period of the "slow" EMA. (Default = 26)
+
+    Returns:
+
+        MACD: The difference between the ema_fast and ema_slow day EMAs of a security. 
+
+        MACD Signal: The ema_macd day EMA of the MACD.
+
+        MACD Histogram: Difference between the MACD and MACD Signal.
+    """
+
+    # todo: maybe add 'long' too?
+    if not isinstance(ema_fast, int) or not 0 < ema_fast <= len(data):
+        raise ValueError("'periods' must be an integer " +
+                         "between 1 and %d." % len(data))
+
+    if not isinstance(ema_slow, int) or not 0 < ema_slow <= len(data):
+        raise ValueError("'periods' must be an integer " +
+                         "between 1 and %d." % len(data))
+
+    if not isinstance(data, (pd.Series, pd.DataFrame)):
+        raise ValueError("'data' must be a pandas Series or DataFrame.")
+
+    if not isinstance(ema_macd, int) or not 0 < ema_macd <= len(data):
+        raise ValueError("'periods' must be an integer " +
+                         "between 1 and %d." % len(data))
+
+    macd  = pd.ewma(data, ema_fast) - pd.ewma(data, ema_slow) 
+    macds = pd.ewma(macd,ema_macd)
+
+    return macd, macds, macd - macds
+
