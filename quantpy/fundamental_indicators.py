@@ -1,2 +1,2 @@
 def peg():
-        pass
+    pass
