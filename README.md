@@ -51,7 +51,7 @@ The prerequisites for Quantpy are:
 
 * pandas (> 0.10.0)
 * matplotlib (> 0.1.0)
-
+* PyGObject (> 3.8.2, only needed for GUI)
 
 Why Python?
 -----------
