@@ -16,7 +16,7 @@ def sma(data, window):
 
     # todo: maybe add 'long' too?
     if not isinstance(window, int) or not 0 < window <= len(data):
-        raise ValueError("'periods' must be an integer " +
+        raise ValueError("'window' must be an integer " +
                          "between 1 and %d." % len(data))
 
     if not isinstance(data, (pd.Series, pd.DataFrame)):
@@ -24,8 +24,9 @@ def sma(data, window):
 
     return pd.rolling_mean(data, window)
 
+
 def smstd(data, window):
-    """Simple Moving Standard Deviation: The standard deviation price of a 
+    """Simple Moving Standard Deviation: The standard deviation price of a
     security over a specific number of periods.
 
     'data' is a pandas Series or DataFrame of prices. A ValueError is raised
@@ -38,7 +39,7 @@ def smstd(data, window):
 
     # todo: maybe add 'long' too?
     if not isinstance(window, int) or not 0 < window <= len(data):
-        raise ValueError("'periods' must be an integer " +
+        raise ValueError("'window' must be an integer " +
                          "between 1 and %d." % len(data))
 
     if not isinstance(data, (pd.Series, pd.DataFrame)):
@@ -48,8 +49,8 @@ def smstd(data, window):
 
 
 def ema(data, window):
-    """Exponential Moving Average: The exponentially weighted average price of a 
-    security over a specific number of periods.
+    """Exponential Moving Average: The exponentially weighted average price of
+    a security over a specific number of periods.
 
     'data' is a pandas Series or DataFrame of prices. A ValueError is raised
     if 'data' is of different data type.
@@ -61,7 +62,7 @@ def ema(data, window):
 
     # todo: maybe add 'long' too?
     if not isinstance(window, int) or not 0 < window <= len(data):
-        raise ValueError("'periods' must be an integer " +
+        raise ValueError("'window' must be an integer " +
                          "between 1 and %d." % len(data))
 
     if not isinstance(data, (pd.Series, pd.DataFrame)):
@@ -69,9 +70,11 @@ def ema(data, window):
 
     return pd.ewma(data, window)
 
+
 def emstd(data, window):
-    """Exponential Moving Standard Deviation: The exponentially weighted standard 
-    deviation of the price of a security over a specific number of periods.
+    """Exponential Moving Standard Deviation: The exponentially weighted
+    standard deviation of the price of a security over a specific number of
+    periods.
 
     'data' is a pandas Series or DataFrame of prices. A ValueError is raised
     if 'data' is of different data type.
@@ -83,7 +86,7 @@ def emstd(data, window):
 
     # todo: maybe add 'long' too?
     if not isinstance(window, int) or not 0 < window <= len(data):
-        raise ValueError("'periods' must be an integer " +
+        raise ValueError("'window' must be an integer " +
                          "between 1 and %d." % len(data))
 
     if not isinstance(data, (pd.Series, pd.DataFrame)):
@@ -91,13 +94,14 @@ def emstd(data, window):
 
     return pd.ewmstd(data, window)
 
-def macd(data, ema_fast = 12, ema_slow = 26, ema_macd = 9):
+
+def macd(data, ema_fast=12, ema_slow=26, ema_macd=9):
     """Moving Average Convergence/Divergence.
 
     Paramters:
 
-        'data' is a pandas Series or DataFrame of prices. A ValueError is raised
-        if 'data' is of different data type.
+        'data' is a pandas Series or DataFrame of prices. A ValueError is
+        raised if 'data' is of different data type.
 
         'ema_fast' The window period of the "fast" EMA. (Default = 12)
 
@@ -105,7 +109,8 @@ def macd(data, ema_fast = 12, ema_slow = 26, ema_macd = 9):
 
     Returns:
 
-        MACD: The difference between the ema_fast and ema_slow day EMAs of a security. 
+        MACD: The difference between the ema_fast and ema_slow day EMAs of a
+        security.
 
         MACD Signal: The ema_macd day EMA of the MACD.
 
@@ -114,22 +119,21 @@ def macd(data, ema_fast = 12, ema_slow = 26, ema_macd = 9):
 
     # todo: maybe add 'long' too?
     if not isinstance(ema_fast, int) or not 0 < ema_fast <= len(data):
-        raise ValueError("'periods' must be an integer " +
+        raise ValueError("'ema_fast' must be an integer " +
                          "between 1 and %d." % len(data))
 
     if not isinstance(ema_slow, int) or not 0 < ema_slow <= len(data):
-        raise ValueError("'periods' must be an integer " +
+        raise ValueError("'ema_slow' must be an integer " +
                          "between 1 and %d." % len(data))
 
     if not isinstance(data, (pd.Series, pd.DataFrame)):
         raise ValueError("'data' must be a pandas Series or DataFrame.")
 
     if not isinstance(ema_macd, int) or not 0 < ema_macd <= len(data):
-        raise ValueError("'periods' must be an integer " +
+        raise ValueError("'ema_macd' must be an integer " +
                          "between 1 and %d." % len(data))
 
-    macd  = pd.ewma(data, ema_fast) - pd.ewma(data, ema_slow) 
-    macds = pd.ewma(macd,ema_macd)
+    macd = pd.ewma(data, ema_fast) - pd.ewma(data, ema_slow)
+    macds = pd.ewma(macd, ema_macd)
 
     return macd, macds, macd - macds
-
