@@ -2,7 +2,7 @@ import os
 import sys
 
 # 3rd party
-import gi.repository as gir
+from gi.repository import Gtk
 from matplotlib.backends.backend_gtk3cairo import FigureCanvasGTK3Cairo as\
     FigureCanvas
 from matplotlib.figure import Figure
@@ -16,7 +16,7 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 
 class App:
     def __init__(self):
-        self.builder = gir.Gtk.Builder()
+        self.builder = Gtk.Builder()
         self.builder.add_from_file(os.path.join(DATA_DIR, "quantpy.glade"))
         self.builder.connect_signals(Handler(self))
 
@@ -31,19 +31,19 @@ class Handler:
         self.app = app
 
     def onDeleteWindow(self, *args):
-        gir.Gtk.main_quit(*args)
+        Gtk.main_quit(*args)
 
     def onGoPressed(self, button):
-        # Get symbols.
         symbol = self.app.symbol.get_text()
-        asset = pd.io.data.DataReader(symbol, "yahoo")
+        asset = pd.io.data.DataReader(symbol, 'yahoo')
 
-        f = Figure(figsize=(5,4), dpi=100)
-        a = f.add_subplot(111, label=symbol)
-        a.plot(asset.index, asset['Adj Close'])
+        figure = Figure(figsize=(5, 4), dpi=100, frameon=False)
+        subplot = figure.add_subplot(1, 1, 1)
+        subplot.plot(asset.index, asset['Adj Close'])
+        subplot.autoscale_view(True, True, True)
 
-        canvas = FigureCanvas(f)
-        canvas.set_size_request(800, 600)
+        canvas = FigureCanvas(figure)
+        canvas.set_size_request(500, 250)
 
         sw = self.app.builder.get_object('scrolledwindow1')
         # remove old children
@@ -55,7 +55,7 @@ class Handler:
 
 def main():
     app = App()
-    gir.Gtk.main()
+    Gtk.main()
 
 
 if __name__ == "__main__":
