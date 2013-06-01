@@ -34,6 +34,7 @@ Also, just downloading the code and providing feedback is also extremely
 useful. Submit your feedback to the [issues page
 here](https://github.com/jsmidt/QuantPy/issues?state=open).  Thanks in advance.
 
+You may also join us at #quantpy on irc.freenode.net.
 
 How To Install.
 ---------------
