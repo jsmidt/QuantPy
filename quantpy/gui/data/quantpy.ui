@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.6 -->
-  <object class="GtkWindow" id="window1">
+  <object class="GtkApplicationWindow" id="window1">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">QuantPy</property>
     <signal name="delete-event" handler="onDeleteWindow" swapped="no"/>
@@ -81,6 +81,40 @@
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkAboutDialog" id="aboutdialog1">
+    <property name="can_focus">False</property>
+    <property name="border_width">5</property>
+    <property name="modal">True</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="type_hint">dialog</property>
+    <property name="attached_to">window1</property>
+    <property name="program_name">QuantPy</property>
+    <property name="website">https://github.com/jsmidt/QuantPy</property>
+    <signal name="delete-event" handler="onAboutDestroy" swapped="no"/>
+    <signal name="response" handler="onAboutResponse" swapped="no"/>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="aboutdialog-vbox1">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="aboutdialog-action_area1">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
     </child>
