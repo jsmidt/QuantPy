@@ -98,7 +98,7 @@ def emstd(data, window):
 def macd(data, ema_fast=12, ema_slow=26, ema_macd=9):
     """Moving Average Convergence/Divergence.
 
-    Paramters:
+    Parameters:
 
         'data' is a pandas Series or DataFrame of prices. A ValueError is
         raised if 'data' is of different data type.
@@ -137,3 +137,42 @@ def macd(data, ema_fast=12, ema_slow=26, ema_macd=9):
     macds = pd.ewma(macd, span = ema_macd)
 
     return macd, macds, macd - macds
+
+def full_stochastic(data, lookback = 14, d_sma = 3, full_sma = 3):
+    """Full Stochastic Oscillator: The full stochastic oscillator for
+       (lookback,d_sma,full_sma) is defined by:
+
+       %K = (Current Close - Lowest Low)/(Highest High - Lowest Low) * 100
+       %D = d_sma-day SMA of %K
+       full %K = %D
+       full %D = full_sma-day SMA of full %K
+
+    Parameters:
+
+        'data' is a pandas Series or DataFrame of prices. Must contain
+               'High', 'Low' and 'Close' information.
+
+        'lookback' Lookback period for calculating highest and Lowst low
+
+        'd_sma'    The SMA used for calculating %D
+
+        'full_sma' The SMA used for calculating full %D
+
+    Returns:
+
+        full %K: (Or standard %D) as defined above
+
+        full %D: as defined above
+
+        %K: Standard %K as defined above
+    """
+
+    l_low = pd.rolling_min(data['Low'], lookback) 
+    h_high = pd.rolling_max(data['High'], lookback) 
+
+    K = (data['Close'] - l_low)/(h_high - l_low) * 100.0
+    full_K = pd.rolling_mean(K,d_sma)
+    full_D = pd.rolling_mean(full_K,full_sma)
+
+    return full_K, full_D, K 
+
