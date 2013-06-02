@@ -68,7 +68,7 @@ def ema(data, window):
     if not isinstance(data, (pd.Series, pd.DataFrame)):
         raise ValueError("'data' must be a pandas Series or DataFrame.")
 
-    return pd.ewma(data, window)
+    return pd.ewma(data, span=window)
 
 
 def emstd(data, window):
@@ -92,7 +92,7 @@ def emstd(data, window):
     if not isinstance(data, (pd.Series, pd.DataFrame)):
         raise ValueError("'data' must be a pandas Series or DataFrame.")
 
-    return pd.ewmstd(data, window)
+    return pd.ewmstd(data, span = window)
 
 
 def macd(data, ema_fast=12, ema_slow=26, ema_macd=9):
@@ -133,7 +133,7 @@ def macd(data, ema_fast=12, ema_slow=26, ema_macd=9):
         raise ValueError("'ema_macd' must be an integer " +
                          "between 1 and %d." % len(data))
 
-    macd = pd.ewma(data, ema_fast) - pd.ewma(data, ema_slow)
-    macds = pd.ewma(macd, ema_macd)
+    macd = pd.ewma(data, span = ema_fast) - pd.ewma(data, span = ema_slow)
+    macds = pd.ewma(macd, span = ema_macd)
 
     return macd, macds, macd - macds
