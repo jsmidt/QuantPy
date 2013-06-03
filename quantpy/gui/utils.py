@@ -2,23 +2,32 @@ import xml.etree.ElementTree as ET
 import urllib.request
 
 
-def fetch_company_news(symbols):
+def fetch_news(tickers, kind='company'):
     """Downloads company news headlines from yahoo
 
-    symbols is a comma separated list of symbols: yhoo,msft,tivo
-    or just one symbol
+    'tickers' is a comma separated list of tickers: yhoo,msft,tivo
+    or just one ticker symbol
 
+    'kind' can either be 'company' or 'industry'. If it's 'industry' industry
+    (that the company belongs to) news will be fetched. A ValueError is raised
+    if kind if neither 'company' nor 'industry'.
     """
-    if not symbols:
+    if not tickers:
         return None
 
-    feed = urllib.request.urlopen(
-        'http://finance.yahoo.com/rss/headline?s=%s' % symbols
-    )
+    if not kind in ('company', 'industry'):
+        raise ValueError("'kind' must be one of 'company' or 'industry'.")
+
+    if kind == 'company':
+        url = 'http://finance.yahoo.com/rss/headline?s=%s' % tickers
+    else:
+        url = 'http://finance.yahoo.com/rss/industry?s=%s' % tickers
+
+    feed = urllib.request.urlopen(url)
 
     tree = ET.parse(feed)
     root = tree.getroot()
-    print(root.attrib)
+
     news = []
     for item in root.iter('item'):
         news.append({
@@ -29,3 +38,4 @@ def fetch_company_news(symbols):
         })
 
     return news
+
