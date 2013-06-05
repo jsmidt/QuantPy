@@ -30,12 +30,14 @@ def fetch_news(tickers, kind='company'):
 
     news = []
     for item in root.iter('item'):
-        news.append({
-            'description': item.find('description').text,
-            'link': item.find('link').text,
-            'pub_date': item.find('pubDate').text,
-            'title': item.find('title').text,
-        })
+        try:
+            news.append({
+                'description': item.find('description').text,
+                'link': item.find('link').text,
+                'pub_date': item.find('pubDate').text,
+                'title': item.find('title').text,
+            })
+        except AttributeError:
+            pass
 
     return news
-
