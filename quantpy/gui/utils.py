@@ -65,7 +65,9 @@ def get_market_updates(symbols, special_tags):
     else:
         sym_list = str.join('+', symbols)
 
-    print(sym_list)
+    # Symbol must be in the special_tags for now
+    if not 's' in special_tags:
+        special_tags.insert(0, 's')
     request = ''.join(special_tags)  # code request string
     special_tag_names = [settings.YAHOO_SYMBOL_TAGS[x] for x in special_tags]
     header = special_tag_names
@@ -109,5 +111,3 @@ def get_dashboard_index_updates():
     symbols = [x for x in settings.DASHBOARD_INDEXES.keys()]
     special_tags = ['s', 'c6', 'd1', 'l1', 'p2']  # settings.YAHOO_SYMBOL_TAGS
     return get_market_updates(symbols, special_tags)
-
-print(get_dashboard_index_updates())
