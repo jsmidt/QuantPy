@@ -1,101 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.6 -->
-  <object class="GtkApplicationWindow" id="window1">
-    <property name="can_focus">False</property>
-    <property name="title" translatable="yes">QuantPy</property>
-    <signal name="delete-event" handler="onDeleteWindow" swapped="no"/>
-    <child>
-      <object class="GtkBox" id="box1">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_left">10</property>
-        <property name="margin_right">10</property>
-        <property name="margin_top">10</property>
-        <property name="margin_bottom">10</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkBox" id="box2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="spacing">5</property>
-            <child>
-              <object class="GtkLabel" id="label1">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="xalign">0.47999998927116394</property>
-                <property name="label" translatable="yes">Symbol</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="entry1">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="invisible_char">•</property>
-                <property name="width_chars">8</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="button1">
-                <property name="label" translatable="yes">Go</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <signal name="clicked" handler="onGoPressed" swapped="no"/>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkScrolledWindow" id="scrolledwindow1">
-            <property name="width_request">500</property>
-            <property name="height_request">250</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkAboutDialog" id="aboutdialog1">
+  <object class="GtkAboutDialog" id="about_dialog">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
     <property name="modal">True</property>
     <property name="window_position">center-on-parent</property>
+    <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
-    <property name="attached_to">window1</property>
+    <property name="transient_for">main_window</property>
+    <property name="attached_to">main_window</property>
     <property name="program_name">QuantPy</property>
     <property name="website">https://github.com/jsmidt/QuantPy</property>
-    <signal name="delete-event" handler="onAboutDestroy" swapped="no"/>
-    <signal name="response" handler="onAboutResponse" swapped="no"/>
+    <signal name="delete-event" handler="on_about_dialog_delete_event" swapped="no"/>
+    <signal name="response" handler="on_about_dialog_response" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkBox" id="aboutdialog-vbox1">
         <property name="can_focus">False</property>
@@ -117,6 +35,197 @@
           <placeholder/>
         </child>
       </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="main_window">
+    <property name="width_request">500</property>
+    <property name="height_request">400</property>
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">QuantPy</property>
+    <signal name="show" handler="on_main_window_show" swapped="no"/>
+    <child>
+      <object class="GtkBox" id="dashboard">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkToolbar" id="toolbar">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <style>
+              <class name="primary-toolbar"/>
+            </style>
+            <child>
+              <object class="GtkToolButton" id="search_button">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="tooltip_text" translatable="yes">Search Symbol</property>
+                <property name="label" translatable="yes">Search</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-find</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="assets_label">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">10</property>
+            <property name="margin_right">10</property>
+            <property name="margin_top">10</property>
+            <property name="margin_bottom">5</property>
+            <property name="xalign">0</property>
+            <property name="xpad">5</property>
+            <property name="label" translatable="yes">Market Updates</property>
+            <attributes>
+              <attribute name="scale" value="1.5"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="assets_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">10</property>
+            <property name="margin_right">10</property>
+            <property name="margin_bottom">10</property>
+            <child>
+              <object class="GtkAlignment" id="alignment1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="xalign">1</property>
+                <property name="xscale">0</property>
+                <property name="right_padding">5</property>
+                <child>
+                  <object class="GtkSpinner" id="spinner1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="active">True</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="loading_assets_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="xalign">0</property>
+                <property name="label" translatable="yes">Loading Assets...</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkBox" id="tech_panel">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="margin_left">10</property>
+    <property name="margin_right">10</property>
+    <property name="margin_top">10</property>
+    <property name="margin_bottom">10</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkBox" id="tech_filter_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="spacing">5</property>
+        <child>
+          <object class="GtkLabel" id="label1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="xalign">0.47999998927116394</property>
+            <property name="label" translatable="yes">Symbol</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="entry1">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="invisible_char">•</property>
+            <property name="width_chars">8</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="button1">
+            <property name="label" translatable="yes">Go</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="onGoPressed" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkScrolledWindow" id="tech_graph_scrolled_window">
+        <property name="width_request">500</property>
+        <property name="height_request">250</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
     </child>
   </object>
 </interface>
