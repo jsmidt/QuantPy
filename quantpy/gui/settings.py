@@ -6,14 +6,14 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 DB_FILE = os.path.join(DATA_DIR, 'db.sqlite3')
 
 # indexes that are displayed on the dashboard
-DASHBOARD_INDEXES = {
+DASHBOARD_ASSETS = {
     #symbol, short name, long name
     '^DJI': ('DJIA', 'Dow Jones Industrial Average'),  # unfortunately, no data
     '^GSPC': ('S&P', 'S&P 500'),
     '^IXIC': ('NASDAQ', 'NASDAQ Composite'),
-    'eurusd=x': ('EUR/USD', 'EUR/USD'),
+    'EURUSD=X': ('EUR/USD', 'EUR/USD'),
     '^TNX': ('10-Year Bond', 'CBOE Interest Rate 10-Year T-No'),
-    'gcq13.cmx': ('Gold', 'Gold Aug 13'),
+    'GCQ13.CMX': ('Gold', 'Gold Aug 13'),
     'CLN13.NYM': ('Oil', 'Crude Oil Jul 13'),
 }
 

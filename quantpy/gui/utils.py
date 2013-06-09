@@ -69,11 +69,10 @@ def get_market_updates(symbols, special_tags):
     if not 's' in special_tags:
         special_tags.insert(0, 's')
     request = ''.join(special_tags)  # code request string
-    special_tag_names = [settings.YAHOO_SYMBOL_TAGS[x] for x in special_tags]
-    header = special_tag_names
+    header = special_tags
 
     data = dict(list(zip(
-        list(special_tag_names), [[] for i in range(len(special_tags))]
+        list(special_tags), [[] for i in range(len(special_tags))]
     )))
 
     urlStr = 'http://finance.yahoo.com/d/quotes.csv?s=%s&f=%s' % (
@@ -84,7 +83,8 @@ def get_market_updates(symbols, special_tags):
     except Exception as e:
         s = "Failed to download:\n{0}".format(e)
         print(s)
-        return None
+        # return an empty data frame
+        return pd.DataFrame()
 
     for line in lines:
         fields = line.decode('utf-8').strip().split(',')
@@ -99,15 +99,16 @@ def get_market_updates(symbols, special_tags):
                 except ValueError:
                     data[header[i]].append(np.nan)
 
-    idx = data.pop('Symbol')
+    idx = data.pop('s')
 
     return pd.DataFrame(data, index=idx)
 
 
-def get_dashboard_index_updates():
-    """Fetch updates for assets in the settings.DASHBOARD_INDEXES
+def get_dashboard_asset_updates():
+    """Fetch updates for assets in the settings.DASHBOARD_ASSETS
     Return a pandas data frame.
     """
-    symbols = [x for x in settings.DASHBOARD_INDEXES.keys()]
+    symbols = [x for x in settings.DASHBOARD_ASSETS.keys()]
+    # s - Symbol, c6 - Change (Real-time), etc.
     special_tags = ['s', 'c6', 'd1', 'l1', 'p2']  # settings.YAHOO_SYMBOL_TAGS
     return get_market_updates(symbols, special_tags)
