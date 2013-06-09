@@ -105,7 +105,7 @@ def get_market_updates(symbols, special_tags):
 
 
 def get_dashboard_asset_updates():
-    """Fetch updates for assets in the settings.DASHBOARD_INDEXES
+    """Fetch updates for assets in the settings.DASHBOARD_ASSETS
     Return a pandas data frame.
     """
     symbols = [x for x in settings.DASHBOARD_ASSETS.keys()]
