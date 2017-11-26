@@ -57,24 +57,17 @@ class Portfolio:
         legend(loc='best', shadow=True, fancybox=True)
 
     def betas(self):
-        betas = []
-        for symbol in self.asset.keys():
-            betas.append(self.asset[symbol]['Beta'][0])
+        betas = [v['Beta'][0] for k, v in self.asset.items()]
         return Series(betas, index=self.asset.keys())
 
     def returns(self):
-        returns = []
-        for symbol in self.asset.keys():
-            returns.append(self.asset[symbol]['Return'].dropna())
+        returns = [v['Return'].dropna() for k, v in self.asset.items()]
         return Series(returns, index=self.asset.keys())
 
     def cov(self):
-        tmp = self.returns()
-        tmpl = []
-        for symbol in tmp.keys():
-            tmpl.append(tmp[symbol])
+        keys, values = self.returns().keys(), self.returns().values()
         return DataFrame(
-            cov(array(tmpl)), index=tmp.keys(), columns=tmp.keys())
+            cov(array(values)), index=keys, columns=keys) 
 
     def get_w(self, kind='sharpe'):
         V = self.cov()
