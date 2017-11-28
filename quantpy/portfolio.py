@@ -48,10 +48,7 @@ class Portfolio:
                 sqrt(len(tmp)) * mean(tmp.fillna(0)) / std(tmp.fillna(0))
 
     def nplot(self, symbol, color='b', nval=0):
-        if symbol == 'bench':
-            tmp = self.benchmark['Adj Close']
-        else:
-            tmp = self.asset[symbol]['Adj Close']
+        tmp = (self.benchmark if symbol == 'bench' else self.asset[symbol]) ['Adj Close'] 
         tmp = tmp / tmp[nval]
         tmp.plot(color=color, label=symbol)
         legend(loc='best', shadow=True, fancybox=True)
@@ -76,9 +73,7 @@ class Portfolio:
         if kind == 'characteristic':
             e = matrix(ones(len(self.asset.keys()))).T
         elif kind == 'sharpe':
-            suml = []
-            for symbol in self.asset.keys():
-                suml.append(self.returns()[symbol].sum())
+            suml = [ self.returns()[symbol].sum() for symbol in self.asset.keys()]
             e = matrix(suml).T
         else:
             print('\n  *Error: There is no weighting for kind ' + kind)
@@ -105,15 +100,14 @@ class Portfolio:
 
         i = 0
         rets = zeros(len(frontier))
-        risk = zeros(len(frontier))
         sharpe = zeros(len(frontier))
         for f in frontier:
             w = self.efficient_frontier_w(f)
             tmp = self.ret_for_w(w)
             rets[i] = tmp.sum() * scale
             sharpe[i] = mean(tmp) / std(tmp) * sqrt(len(tmp))
-            risk[i] = rets[i] / sharpe[i]
             i += 1
+        risk = rets/sharpe
         return Series(rets, index=risk), sharpe.max()
 
     def efficient_frontier_plot(self, xi=0.01, xf=4, npts=100, scale=0.1,
@@ -136,9 +130,7 @@ class Portfolio:
 
     def min_var_w_ret(self, ret):
         V = self.cov()
-        suml = []
-        for symbol in self.asset.keys():
-            suml.append(self.returns()[symbol].sum())
+        suml = [self.returns()[symbol].sum() for symbol in self.asset.keys()] 
         e = matrix(suml).T
         iV = matrix(inv(V))
         num = iV * e * ret
@@ -147,9 +139,5 @@ class Portfolio:
 
     def ret_for_w(self, w):
         tmp = self.returns()
-        i = 0
-        tmpl = []
-        for symbol in tmp.keys():
-            tmpl.append(tmp[symbol] * w[i])
-            i += 1
+        tmpl = [v * wi for v, wi in zip(tmp.values(), w) ] 
         return Series(tmpl, index=tmp.keys()).sum()
