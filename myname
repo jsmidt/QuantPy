@@ -1,0 +1,2 @@
+myname = "We are the knights that say Ni!"
+print(myname)
