@@ -6,7 +6,7 @@ A framework for quantitative finance in python.
 **Disclaimer:** This is a *very* alpha project.  It is not ready to be used and
 won't be for a while.  In fact, the author is still very much learning what
 such a framework needs to entail.  However, if you consider yourself a helpful
-soul contributions of any type are more then welcome. Thanks!
+soul, contributions of any type are more then welcome. Thanks!
 
 
 Some current capabilities:
@@ -25,14 +25,14 @@ Contributions Welcome.
 Any and all contributions for the project are welcome whether they be feature
 requests, bug reports, contributions to documentation, or patches for new
 features, bug fixes of other improvements.  Just [fork the
-repo](https://help.github.com/articles/fork-a-repo), add some content and [make
-a pull request] (https://help.github.com/articles/be-social).  If you are new
-to Git [this tutorial](http://learn.github.com/p/intro.html) is nice for further
+repo](https://help.github.com/articles/fork-a-repo), add some content and (make
+a pull request) [https://help.github.com/articles/be-social].  If you are new
+to Git (this tutorial)[http://learn.github.com/p/intro.html] is nice for further
 details.
 
 Also, just downloading the code and providing feedback is also extremely
-useful. Submit your feedback to the [issues page
-here](https://github.com/jsmidt/QuantPy/issues?state=open).  Thanks in advance.
+useful. Submit your feedback to the (issues page
+here)[https://github.com/jsmidt/QuantPy/issues?state=open].  Thanks in advance.
 
 You may also join us at #quantpy on irc.freenode.net.
 
@@ -96,5 +96,5 @@ by submitting patches for new features, bug fixes, and other improvements.
 
 
 With that said, I hope you very much enjoy Quantpy.  I hope it meets your
-needs, makes you happy and that your retrun the favor through the types of
+needs, makes you happy and that your return the favor through the types of
 contributions mentioned above. 
