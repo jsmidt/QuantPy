@@ -11,7 +11,11 @@ setup(
     description='A framework for quantitative finance In python',
     long_description=open('README.md').read(),
     install_requires=[
+        "numpy >= 1.23.5",
         "pandas >= 0.10.0",
         "matplotlib >= 1.1.0",
+        "statsmodels >= 0.14.0",
+        "arch >= 6.0.1",
+        "scikit-learn >= 1.1.0",
     ],
 )
