@@ -16,6 +16,6 @@ setup(
         "matplotlib >= 1.1.0",
         "statsmodels >= 0.14.0",
         "arch >= 6.0.1",
-        "sklearn >= 1.1.0",
+        "scikit-learn >= 1.1.0",
     ],
 )
